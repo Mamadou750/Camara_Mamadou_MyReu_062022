@@ -25,7 +25,16 @@
             android:id="@+id/container_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical" >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_meet"
+                android:name="list.MeetFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/fragment_meet_item" />
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -63,4 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="30dp"
         tools:ignore="MissingConstraints" />
+
+    <?xml version="1.0" encoding="utf-8"?>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
