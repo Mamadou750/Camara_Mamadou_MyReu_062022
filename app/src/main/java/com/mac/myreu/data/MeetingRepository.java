@@ -63,84 +63,40 @@ public class MeetingRepository {
         meetingsLiveData.setValue(meetings);
     }
 
-    public void toggleFavoriteNeighbour(long id) {
-        List<Meeting> meetings = meetingsLiveData.getValue();
 
-        if (meetings == null) return;
-
-        for (int i = 0; i < meetings.size(); i++) {
-            Meeting meeting = meetings.get(i);
-            if (meeting.getId() == id) {
-                meetings.remove(i);
-                meetings.add(
-                        i,
-                        // This is ugly to copy unchanged fields in Java but immutability is very important !
-                        // Setters are a terrible practice for models outside MVC world.
-                        // Ask about your mentor why immutability of models is so important.
-                        new Meeting(
-                                meeting.getId(),
-                                meeting.getName(),
-                                meeting.getHours(),
-                                meeting.getRoomName(),
-                                meeting.getRoomColor(),
-                                meeting.getMails()
-                        )
-                );
-                break;
-            }
-        }
-
-        meetingsLiveData.setValue(meetings);
-    }
 
     public LiveData<List<Meeting>> getMeetingsLiveData() {
         return meetingsLiveData;
     }
 
-    public LiveData<Meeting> getNeighbourLiveData(long meetingId) {
-        // We use a Transformation here so whenever the neighboursLiveData changes, the underlying lambda will be called too, and
-        // the Neighbour will be re-emitted (with potentially new information like isFavorite set to true or false)
-
-        // This Transformation transforms a List of Neighbours into a Neighbour (matched by its ID)
-        return Transformations.map(meetingsLiveData, meetings -> {
-            for (Meeting meeting : meetings) {
-                if (meeting.getId() == meetingId) {
-                    return meeting;
-                }
-            }
-
-            return null;
-        });
-    }
-
     private void generateRandomMeetings() {
         addMeeting(
                 "Peach",
-                "rouge",
-                "Salle 1",
+                "#40a8db",
+                "room 1",
                 "14h",
                 "maxim@lamzom.com, alex@lamzom.com, luc@lamzom.com"
         );
         addMeeting(
                 "Jack",
-                "bleu",
-                "Salle 2",
+                "#40a8db",
+                "room 2",
                 "8h",
                 "theo@lamzom.com, sarah@lamzom.com, dan@lamzom.com\""
         );
         addMeeting(
                 "Carl",
-                "vert",
-                "Salle 3",
+                "#40a8db",
+                "room 3",
                 "15h",
                 "eric.com, julie@lamzom.com, paul@lamzom.com\""
         );
         addMeeting(
                 "Vincent",
-                "gris",
-                "Salle 4",
+                "#40a8db",
+                "room 4",
                 "18h",
-                "kara@lamzom.com, lara@lamzom.com, dexter@lamzom.com\""
+                "kara@lamzom.com,lara@lamzom.com,dexter@lamzom.com\""
         );
 
     }

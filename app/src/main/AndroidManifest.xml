@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyReu">
+
+
         <activity
-            android:name=".AddMeetingActivity"
+            android:name=".ui.add.AddMeetingActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.util.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

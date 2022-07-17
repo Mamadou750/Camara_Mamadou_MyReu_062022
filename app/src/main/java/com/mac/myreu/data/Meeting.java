@@ -6,16 +6,16 @@ import androidx.annotation.Nullable;
 import java.util.Objects;
 
 public class Meeting {
-    private final long id;
+    private static long id;
     @NonNull
     private final String name;
     @NonNull
     private final String roomColor;
-    @Nullable
+    @NonNull
     private final String hours;
-    @Nullable
+    @NonNull
     private final String roomName;
-    @Nullable
+    @NonNull
     private final String mails;
 
 
@@ -23,11 +23,11 @@ public class Meeting {
             long id,
             @NonNull String name,
             @NonNull String roomColor,
-            @Nullable String hours,
-            @Nullable String roomName,
-            @Nullable String mails
+            @NonNull String hours,
+            @NonNull String roomName,
+            @NonNull String mails
     ) {
-        this.id = id;
+        Meeting.id = id;
         this.name = name;
         this.hours = hours;
         this.roomColor= roomColor;
@@ -44,7 +44,7 @@ public class Meeting {
         return name;
     }
 
-    @Nullable
+    @NonNull
     public String getHours() {
         return hours;
     }
@@ -54,12 +54,12 @@ public class Meeting {
         return roomColor;
     }
 
-    @Nullable
+    @NonNull
     public String getRoomName() {
         return roomName;
     }
 
-    @Nullable
+    @NonNull
     public String getMails() {
         return mails;
     }
@@ -71,7 +71,7 @@ public class Meeting {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meeting meeting = (Meeting) o;
-        return id == Meeting.id && name.equals(meeting.name) && Objects.equals(hours, meeting.hours) && Objects.equals(roomName, meeting.roomName) && Objects.equals(roomColor, meeting.roomColor) && Objects.equals(mails ,meeting.mails);
+        return name.equals(meeting.name) && Objects.equals(hours, meeting.hours) && Objects.equals(roomName, meeting.roomName) && Objects.equals(roomColor, meeting.roomColor) && Objects.equals(mails, meeting.mails);
     }
 
     @Override
