@@ -5,10 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.mac.myreu.data.Room;
 import com.mac.myreu.ui.util.SingleLiveEvent;
 
 
 import com.mac.myreu.data.MeetingRepository;
+
+import java.util.List;
 
 public class AddMeetingViewModel extends ViewModel {
     // Injected thanks to ViewModelFactory
@@ -48,13 +52,13 @@ public class AddMeetingViewModel extends ViewModel {
 
     public void onAddButtonClicked(
             @NonNull String name,
-            @Nullable String roomColor,
+            @NonNull Room room,
+            @Nullable String date,
             @Nullable String hours,
-            @Nullable String roomName,
             @Nullable String mails
     ) {
         // Add neighbour to the repository...
-        meetingRepository.addMeeting(name, roomColor, hours, roomName, mails);
+        meetingRepository.addMeeting(name,room,date,hours, mails);
         // ... and close the Activity !
         closeActivitySingleLiveEvent.call();
     }

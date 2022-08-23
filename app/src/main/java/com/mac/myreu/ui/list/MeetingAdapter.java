@@ -1,6 +1,7 @@
 package com.mac.myreu.ui.list;
 
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.mac.myreu.R;
 
 import com.mac.myreu.data.Meeting;
@@ -56,13 +55,10 @@ public class MeetingAdapter extends ListAdapter <Meeting, MeetingAdapter.ViewHol
 
         public void bind(Meeting item, onMeetingClickListener listener) {
 
-            Glide.with(colorImageView)
-                    .load(item.getRoomColor())
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(colorImageView);
-            nameTextView.setText(item.getName() +" " + item.getHours() +" " + item.getRoomName());
+            colorImageView.setBackgroundColor(Color.parseColor(item.getRoom().getColor()));
+            nameTextView.setText(item.getName() + " - " + item.getRoom() + " - " + item.getDateFormated() + " - " + item.getHours());
             mailTextView.setText(item.getMails());
-            deleteImageView.setOnClickListener(v -> listener.onDeleteMeetingClicked(item.getId()));
+            deleteImageView.setOnClickListener(v -> listener.onDeleteMeetingClicked(item.getName(), item.getHours()));
 
         }
     }
@@ -73,7 +69,7 @@ public class MeetingAdapter extends ListAdapter <Meeting, MeetingAdapter.ViewHol
                 public boolean areItemsTheSame(
                         @NonNull Meeting oldMeeting, @NonNull Meeting newMeeting) {
                     // User properties may have changed if reloaded from the DB, but ID is fixed
-                    return oldMeeting.getId() == newMeeting.getId();
+                    return oldMeeting.getName() == newMeeting.getName();
                 }
                 @Override
                 public boolean areContentsTheSame(
