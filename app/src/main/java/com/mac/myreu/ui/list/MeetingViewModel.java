@@ -27,7 +27,18 @@ public class MeetingViewModel extends ViewModel {
         return meetingRepository.getMeetingsLiveData();
     }
 
-    public void onDeleteMeetingClicked(long meetingId) {
-        meetingRepository.deleteMeeting(meetingId);
+    public void onDeleteMeetingClicked(String meetingName, String meetingHours) {
+        meetingRepository.deleteMeeting(meetingName, meetingHours);
+    }
+
+    public void filterByDate(String date) {
+        meetingRepository.filterByDate(date);
+    }
+
+    public void filterByPlace(String place) {
+        meetingRepository.filterByPlace(place);
+    }
+    public void cleanFilter(){
+        meetingRepository.cleanFilter();
     }
 }

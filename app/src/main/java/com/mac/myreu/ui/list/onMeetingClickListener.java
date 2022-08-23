@@ -2,5 +2,5 @@ package com.mac.myreu.ui.list;
 
 public interface onMeetingClickListener {
 
-    void onDeleteMeetingClicked(long meetingId);
+    void onDeleteMeetingClicked(String meetingName, String meetingHours);
 }
